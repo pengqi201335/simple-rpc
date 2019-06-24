@@ -3,10 +3,13 @@ package com.pq.rpc.config;
 import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.config.support.AbstractConfig;
+import com.pq.rpc.filter.Filter;
 import com.pq.rpc.protocol.api.Invoker;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 10)超时时间，默认为3000ms
  * 11)是否初始化(判断该referenceConfig对象是否已被初始化)
  * 12)是否泛化调用服务
+ * 13)过滤器链表filters
  *
  */
 @Data
@@ -65,6 +69,8 @@ public class ReferenceConfig<T> extends AbstractConfig {
 
     private boolean isGeneric;
 
+    private List<Filter> filters;
+
     /**
      * 引用配置类的本地缓存，引用同一个服务时共享缓存中的同一个ReferenceConfig
      */
@@ -84,7 +90,8 @@ public class ReferenceConfig<T> extends AbstractConfig {
                                                                String callbackMethod,
                                                                int callbackParamIndex,
                                                                long timeout,
-                                                               boolean isGeneric){
+                                                               boolean isGeneric,
+                                                               List<Filter> filters){
         //缓存命中
         if(CACHE.containsKey(interfaceName)){
             //引用同一个服务的注解配置必须相同，否则缓存中的引用配置类的属性会覆盖注解属性，使其失效
@@ -105,6 +112,7 @@ public class ReferenceConfig<T> extends AbstractConfig {
                 .callbackMethod(callbackMethod)
                 .callbackParamIndex(callbackParamIndex)
                 .timeout(timeout)
+                .filters(filters==null?new ArrayList<>():filters)
                 .isGeneric(isGeneric).build();
 
         //放入缓存

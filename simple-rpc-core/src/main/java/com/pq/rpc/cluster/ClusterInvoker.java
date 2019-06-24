@@ -8,6 +8,7 @@ import com.pq.rpc.config.GlobalConfig;
 import com.pq.rpc.config.ReferenceConfig;
 import com.pq.rpc.protocol.api.InvokeParam;
 import com.pq.rpc.protocol.api.Invoker;
+import com.pq.rpc.protocol.support.AbstractRemoteProtocol;
 import com.pq.rpc.registry.api.ServiceURL;
 import lombok.extern.slf4j.Slf4j;
 
@@ -161,12 +162,19 @@ public class ClusterInvoker<T> implements Invoker<T> {
         if(addressInvokers.containsKey(address)){
             //服务地址没有发生变化,只是配置被改变
             //只需要在protocol层对配置进行更新
-            // TODO if(globalConfig.getProtocol() instanceof )
+            if(globalConfig.getProtocol() instanceof AbstractRemoteProtocol){
+                AbstractRemoteProtocol protocol = (AbstractRemoteProtocol)globalConfig.getProtocol();
+                //更新底层配置信息
+                protocol.updateEndpointConfig(serviceURL);
+            }
         }else{
             //新增服务地址
             log.info("NEW SERVER ADDED,INTERFACE_NAME:"+interfaceName+"NEW_SERVICE_URL:"+serviceURL);
+            //引用远程服务,获得protocol层的Invoker对象
+            //通过接口名来获取对应的ReferenceConfig对象,因为引用同一个服务的用户共享同一个ReferenceConfig
             Invoker protocolInvoker = globalConfig.getProtocolConfig().getProtocolInstance().refer(serviceURL,
                     ReferenceConfig.getReferenceConfigByInterfaceName(interfaceName));
+            addressInvokers.put(serviceURL.getServiceAddress(),protocolInvoker);
         }
     }
 
@@ -206,5 +214,35 @@ public class ClusterInvoker<T> implements Invoker<T> {
         }
     }
 
+    /**
+     * 调用失败后,重试时调用的invoke方法
+     * 不捕获异常的原因是:会由调用此方法的函数来捕获异常
+     *
+     * @param availableInvokers 此时的可用服务列表
+     * @param invokeParam 调用参数
+     * @return 调用结果
+     */
+    public RPCResponse invokeForFaultTolerance(List<Invoker> availableInvokers,InvokeParam invokeParam){
+        Invoker protocolInvoker = doSelect(availableInvokers,invokeParam);
+        RPCThreadLocalContext.getContext().setInvoker(protocolInvoker);
 
+        RPCResponse response = protocolInvoker.invoke(invokeParam);
+
+        if(response==null){
+            return null;
+        }
+
+        if(response.hasError()){
+            throw new RPCException(response.getErrorCause(),
+                    ExceptionEnum.REMOTE_SERVICE_INVOCATION_FAILED,
+                    "REMOTE_SERVICE_INVOCATION_FAILED");
+        }
+
+        return response;
+    }
+
+    @Override
+    public ServiceURL getServiceURL() {
+        throw new UnsupportedOperationException();
+    }
 }

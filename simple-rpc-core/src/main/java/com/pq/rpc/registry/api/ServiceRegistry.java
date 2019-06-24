@@ -24,7 +24,7 @@ public interface ServiceRegistry {
      * @param interfaceName 服务名
      * @param serviceAddress　服务提供方地址
      */
-    void register(String interfaceName,String serviceAddress);
+    void register(String serviceAddress,String interfaceName,Class<?> interfaceClass);
 
     void close();
 }

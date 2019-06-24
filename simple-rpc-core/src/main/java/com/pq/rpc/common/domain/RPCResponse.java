@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * RPC调用结果，有一下几种调用场景
+ * RPC调用结果，有以下几种调用场景
  * 1)provider端调用完成后，创建此对象，经序列化后发送给consumer
  * 2)consumer端接收到调用响应后，创建此对象，返回给用户
  *
