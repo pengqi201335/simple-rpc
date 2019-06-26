@@ -79,7 +79,7 @@ public abstract class AbstractRemoteProtocol extends AbstractProtocol {
             throw new RPCException(ExceptionEnum.SERVER_ADDRESS_IS_NOT_CONFIGURATION,"SERVER_ADDRESS_IS_NOT_CONFIGURATION");
         }
         //调用transport层的接口更新端点配置
-        clientMap.get(serviceURL.getServiceAddress()).updateEndPointConfig(serviceURL);
+        clientMap.get(serviceURL.getServiceAddress()).updateServiceConfig(serviceURL);
     }
 
     public final void closeEndpoint(String address){

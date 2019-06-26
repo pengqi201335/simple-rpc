@@ -48,7 +48,7 @@ public interface Client {
      * 更新配置
      * @param serviceURL 新的配置信息
      */
-    void updateEndPointConfig(ServiceURL serviceURL);
+    void updateServiceConfig(ServiceURL serviceURL);
 
     /* 获取与该客户端实例连接的服务信息 */
     ServiceURL getServiceURL();

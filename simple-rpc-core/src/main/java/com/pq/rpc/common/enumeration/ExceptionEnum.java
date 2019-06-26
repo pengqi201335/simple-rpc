@@ -14,7 +14,10 @@ public enum ExceptionEnum {
     SERVER_NOT_EXPORTED("此服务还未进行暴露"),
     SERVER_ADDRESS_IS_NOT_CONFIGURATION("当前端点还未配置"),
     GET_PROCESSOR_METHOD_MUST_BE_OVERRIDE("getProcessor()方法未被重写,无法提交RPC请求"),
-    FAIL_TO_GET_LOCALHOST_ADDRESS("获取本地主机地址失败");
+    FAIL_TO_GET_LOCALHOST_ADDRESS("获取本地主机地址失败"),
+    FAIL_TO_CONNECT_TO_SERVER("连接服务器失败"),
+    SUBMIT_AFTER_ENDPOINT_CLOSE("服务器已关闭连接,此时不可再提交请求"),
+    HEART_BEAT_TIMES_EXCEED("超过心跳重试次数");
 
     private String errorMessage;
 

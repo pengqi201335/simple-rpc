@@ -85,6 +85,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
             RPCResponse response = protocolInvoker.invoke(invokeParam);
             if(response==null){
                 //当调用方式为oneWay/future/callback时,调用结果是为null的
+                //异步调用时,完成之后要去RPCThreadSharedContext里取future对象来get()最后的结果
                 return null;
             }
 
