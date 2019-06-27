@@ -5,8 +5,8 @@ import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
+import com.pq.rpc.transport.James.constance.JamesConstant;
 import com.pq.rpc.transport.api.support.AbstractClient;
-import com.pq.rpc.transport.constance.CommunicationConstant;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -115,9 +115,8 @@ public abstract class AbstractNettyClient extends AbstractClient {
 
     /**
      * 重连
-     * @throws Exception 异常
      */
-    private void reconnect() throws Exception{
+    private void reconnect(){
         if(destroyed){
             retryExecutor.run();
         }
@@ -136,9 +135,9 @@ public abstract class AbstractNettyClient extends AbstractClient {
                     doConnect();
                 }catch (Exception e){
                     //出现异常,反复重连
-                    log.error("重连失败,{}秒后重试...", CommunicationConstant.RETRY_INTERVAL);
+                    log.error("重连失败,{}秒后重试...", JamesConstant.IDLE_INTERVAL);
                     //调度执行重连方法
-                    futureChannel.eventLoop().schedule(retryExecutor,CommunicationConstant.RETRY_INTERVAL, TimeUnit.SECONDS);
+                    futureChannel.eventLoop().schedule(retryExecutor,JamesConstant.IDLE_INTERVAL, TimeUnit.SECONDS);
                 }
             }else{
                 //服务器主动关闭连接

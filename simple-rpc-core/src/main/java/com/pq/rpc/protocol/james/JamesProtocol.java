@@ -7,9 +7,12 @@ import com.pq.rpc.config.ServiceConfig;
 import com.pq.rpc.filter.Filter;
 import com.pq.rpc.protocol.api.Exporter;
 import com.pq.rpc.protocol.api.Invoker;
-import com.pq.rpc.protocol.support.AbstractRemoteProtocol;
+import com.pq.rpc.protocol.api.support.AbstractRemoteProtocol;
 import com.pq.rpc.registry.api.ServiceURL;
+import com.pq.rpc.transport.James.client.JamesClient;
+import com.pq.rpc.transport.James.server.JamesServer;
 import com.pq.rpc.transport.api.Client;
+import com.pq.rpc.transport.api.Server;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -31,12 +34,20 @@ public class JamesProtocol extends AbstractRemoteProtocol {
      */
     @Override
     protected Client doInitClient(ServiceURL serviceURL) {
-        return null;
+        JamesClient jamesClient = new JamesClient();
+        jamesClient.init(serviceURL,getGlobalConfig());
+        return jamesClient;
     }
 
+    /**
+     * 开启服务端连接
+     */
     @Override
-    protected void doOpenServer() {
-
+    protected Server doOpenServer() {
+        JamesServer jamesServer = new JamesServer();
+        jamesServer.init(getGlobalConfig());
+        jamesServer.run();
+        return jamesServer;
     }
 
     /**

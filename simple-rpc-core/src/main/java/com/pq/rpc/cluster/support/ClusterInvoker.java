@@ -1,4 +1,4 @@
-package com.pq.rpc.cluster;
+package com.pq.rpc.cluster.support;
 
 import com.pq.rpc.common.context.RPCThreadLocalContext;
 import com.pq.rpc.common.domain.RPCResponse;
@@ -8,7 +8,7 @@ import com.pq.rpc.config.GlobalConfig;
 import com.pq.rpc.config.ReferenceConfig;
 import com.pq.rpc.protocol.api.InvokeParam;
 import com.pq.rpc.protocol.api.Invoker;
-import com.pq.rpc.protocol.support.AbstractRemoteProtocol;
+import com.pq.rpc.protocol.api.support.AbstractRemoteProtocol;
 import com.pq.rpc.registry.api.ServiceURL;
 import lombok.extern.slf4j.Slf4j;
 

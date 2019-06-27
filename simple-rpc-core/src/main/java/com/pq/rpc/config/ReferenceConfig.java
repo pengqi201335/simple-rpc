@@ -154,8 +154,12 @@ public class ReferenceConfig<T> extends AbstractConfig {
      * 初始化config
      */
     private void init(){
+        if(initialized){
+            return;
+        }
+        initialized = true;
         //获取ClusterInvoker,集群层面的Invoker
-        Invoker<T> invoker = getClusterConfig().getLoadBalancerInstance().referCluster(this);
+        invoker = getClusterConfig().getLoadBalancerInstance().referCluster(this);
         //根据ClusterInvoker调用代理工厂生产代理对象
         ref = getApplicationConfig().getRPCProxyFactoryInstance().createProxy(invoker);
     }

@@ -1,6 +1,6 @@
 package com.pq.rpc.config;
 
-import com.pq.rpc.executor.TaskExecutor;
+import com.pq.rpc.executor.api.TaskExecutor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

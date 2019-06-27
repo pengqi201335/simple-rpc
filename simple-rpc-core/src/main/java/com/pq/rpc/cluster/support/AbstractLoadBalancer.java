@@ -1,6 +1,5 @@
 package com.pq.rpc.cluster.support;
 
-import com.pq.rpc.cluster.ClusterInvoker;
 import com.pq.rpc.cluster.api.LoadBalancer;
 import com.pq.rpc.config.GlobalConfig;
 import com.pq.rpc.config.ReferenceConfig;

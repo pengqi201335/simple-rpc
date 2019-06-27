@@ -2,8 +2,7 @@ package com.pq.rpc.protocol.james;
 
 import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
-import com.pq.rpc.protocol.support.AbstractRemoteInvoker;
-import com.pq.rpc.transport.api.Client;
+import com.pq.rpc.protocol.api.support.AbstractRemoteInvoker;
 
 import java.util.concurrent.Future;
 import java.util.function.Function;

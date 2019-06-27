@@ -1,4 +1,4 @@
-package com.pq.rpc.protocol.support;
+package com.pq.rpc.protocol.api.support;
 
 import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.config.ReferenceConfig;

@@ -1,6 +1,6 @@
 package com.pq.rpc.protocol.james;
 
-import com.pq.rpc.protocol.support.AbstractExporter;
+import com.pq.rpc.protocol.api.support.AbstractExporter;
 
 /**
  * 面向James协议的Exporter

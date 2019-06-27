@@ -2,7 +2,7 @@ package com.pq.rpc.config;
 
 import com.pq.rpc.cluster.api.FaultToleranceHandler;
 import com.pq.rpc.cluster.api.LoadBalancer;
-import com.pq.rpc.executor.TaskExecutor;
+import com.pq.rpc.executor.api.TaskExecutor;
 import com.pq.rpc.protocol.api.Protocol;
 import com.pq.rpc.registry.api.ServiceRegistry;
 import com.pq.rpc.serialize.api.Serializer;

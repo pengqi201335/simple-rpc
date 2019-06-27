@@ -1,4 +1,4 @@
-package com.pq.rpc.protocol.support;
+package com.pq.rpc.protocol.api.support;
 
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.protocol.api.InvokeParam;

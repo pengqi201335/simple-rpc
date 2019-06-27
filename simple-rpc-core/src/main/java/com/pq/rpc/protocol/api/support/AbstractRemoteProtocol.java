@@ -1,4 +1,4 @@
-package com.pq.rpc.protocol.support;
+package com.pq.rpc.protocol.api.support;
 
 import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
@@ -98,11 +98,11 @@ public abstract class AbstractRemoteProtocol extends AbstractProtocol {
      */
     protected synchronized final void openServer(){
         if(server==null){
-            doOpenServer();
+            server = doOpenServer();
         }
     }
 
-    protected abstract void doOpenServer();
+    protected abstract Server doOpenServer();
 
     @Override
     public void close() {
