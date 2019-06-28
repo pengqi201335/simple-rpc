@@ -57,7 +57,7 @@ public class RPCRequest implements Serializable {
         return parameterTypeClasses;
     }
 
-    public void setParamterTypes(String[] parameterTypes){
+    public void setParameterTypes(String[] parameterTypes){
         this.parameterTypes = parameterTypes;
     }
 
