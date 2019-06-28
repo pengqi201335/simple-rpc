@@ -26,4 +26,13 @@ public class RegistryConfig {
     private String address;
 
     private ServiceRegistry serviceRegistryInstance;
+
+    /**
+     * 关闭注册中心客户端
+     */
+    public void close(){
+        if(serviceRegistryInstance!=null){
+            serviceRegistryInstance.close();
+        }
+    }
 }

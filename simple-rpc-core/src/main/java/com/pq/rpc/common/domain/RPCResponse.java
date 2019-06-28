@@ -1,5 +1,6 @@
 package com.pq.rpc.common.domain;
 
+import io.netty.util.Recycler;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,7 +26,20 @@ public class RPCResponse implements Serializable {
     //调用结果
     private Object result;
 
+    private final transient Recycler.Handle<RPCResponse> handle;
+
+    public RPCResponse(Recycler.Handle<RPCResponse> handle){
+        this.handle = handle;
+    }
+
     public boolean hasError(){
         return errorCause!=null;
+    }
+
+    public void recycle(){
+        requestID = null;
+        errorCause = null;
+        result = null;
+        handle.recycle(this);
     }
 }

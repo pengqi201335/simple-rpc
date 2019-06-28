@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 封装RPC请求对象和请求参数的类
+ * 封装RPC请求对象和引用配置对象的类
  *
  * @author pengqi
  * create at 2019/6/26

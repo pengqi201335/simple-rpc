@@ -17,7 +17,9 @@ public enum ExceptionEnum {
     FAIL_TO_GET_LOCALHOST_ADDRESS("获取本地主机地址失败"),
     FAIL_TO_CONNECT_TO_SERVER("连接服务器失败"),
     SUBMIT_AFTER_ENDPOINT_CLOSE("服务器已关闭连接,此时不可再提交请求"),
-    HEART_BEAT_TIMES_EXCEED("超过心跳重试次数");
+    HEART_BEAT_TIMES_EXCEED("超过心跳重试次数"),
+    RECYCLER_ERROR("对象不可复用"),
+    TRANSPORT_FAILURE("通信层异常");
 
     private String errorMessage;
 
