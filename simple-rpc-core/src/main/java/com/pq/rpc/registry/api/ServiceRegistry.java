@@ -23,6 +23,7 @@ public interface ServiceRegistry {
      * 服务注册方法,用于provider
      * @param interfaceName 服务名
      * @param serviceAddress　服务提供方地址
+     * @param interfaceClass 服务接口Class对象
      */
     void register(String serviceAddress,String interfaceName,Class<?> interfaceClass);
 

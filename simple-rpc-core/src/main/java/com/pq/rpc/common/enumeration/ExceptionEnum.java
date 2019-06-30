@@ -19,7 +19,11 @@ public enum ExceptionEnum {
     SUBMIT_AFTER_ENDPOINT_CLOSE("服务器已关闭连接,此时不可再提交请求"),
     HEART_BEAT_TIMES_EXCEED("超过心跳重试次数"),
     RECYCLER_ERROR("对象不可复用"),
-    TRANSPORT_FAILURE("通信层异常");
+    TRANSPORT_FAILURE("通信层异常"),
+    SERIALIZE_ERROR("序列化异常"),
+    DESERIALIZE_ERROR("反序列化异常"),
+    REGISTRY_ERROR("ZK异常");
+
 
     private String errorMessage;
 

@@ -1,5 +1,7 @@
 package com.pq.rpc.serialize.api;
 
+import com.pq.rpc.common.exception.RPCException;
+
 /**
  * 序列化/反序列化接口
  *
@@ -13,7 +15,7 @@ public interface Serializer {
      * @param <T> 对象类型
      * @return 序列化字节数组
      */
-    <T> byte[] serialize(T o);
+    <T> byte[] serialize(T o) throws RPCException;
 
     /**
      * 反序列化
@@ -22,5 +24,5 @@ public interface Serializer {
      * @param <T> 目标对象类型
      * @return 目标对象
      */
-    <T> T deSerialize(byte[] bytes,Class<T> clazz);
+    <T> T deSerialize(byte[] bytes,Class<T> clazz) throws RPCException;
 }

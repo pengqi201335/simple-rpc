@@ -63,7 +63,7 @@ public final class ServiceURL {
      * @param data 待解析数据
      * @return 解析后的serviceURL
      */
-    public ServiceURL parse(String data){
+    public static ServiceURL parse(String data){
         String[] url = data.split("\\?");
 
         ServiceURL serviceURL = new ServiceURL(url[0]);     //根据服务地址创建ServiceURL对象
