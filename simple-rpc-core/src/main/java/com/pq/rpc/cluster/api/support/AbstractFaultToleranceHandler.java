@@ -1,4 +1,4 @@
-package com.pq.rpc.cluster.support;
+package com.pq.rpc.cluster.api.support;
 
 import com.pq.rpc.cluster.api.FaultToleranceHandler;
 

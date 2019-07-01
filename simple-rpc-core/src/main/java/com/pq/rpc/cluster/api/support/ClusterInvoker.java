@@ -1,4 +1,4 @@
-package com.pq.rpc.cluster.support;
+package com.pq.rpc.cluster.api.support;
 
 import com.pq.rpc.common.context.RPCThreadLocalContext;
 import com.pq.rpc.common.domain.RPCResponse;
@@ -9,6 +9,7 @@ import com.pq.rpc.config.ReferenceConfig;
 import com.pq.rpc.protocol.api.InvokeParam;
 import com.pq.rpc.protocol.api.Invoker;
 import com.pq.rpc.protocol.api.support.AbstractRemoteProtocol;
+import com.pq.rpc.protocol.api.support.RPCInvokeParam;
 import com.pq.rpc.registry.api.ServiceURL;
 import lombok.extern.slf4j.Slf4j;
 
@@ -203,8 +204,10 @@ public class ClusterInvoker<T> implements Invoker<T> {
             }
         }else{
             //找到多个服务实现
-            //TODO add invokerParam
-            invoker = globalConfig.getClusterConfig().getLoadBalancerInstance().select(availableInvokers);
+            invoker = globalConfig.
+                    getClusterConfig().
+                    getLoadBalancerInstance().
+                    select(availableInvokers, ((RPCInvokeParam)invokeParam).getRPCRequest());
             if(invoker.isAvailable()){
                 return invoker;
             }else{

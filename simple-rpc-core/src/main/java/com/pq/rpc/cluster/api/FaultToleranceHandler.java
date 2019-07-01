@@ -1,6 +1,6 @@
 package com.pq.rpc.cluster.api;
 
-import com.pq.rpc.cluster.support.ClusterInvoker;
+import com.pq.rpc.cluster.api.support.ClusterInvoker;
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.protocol.api.InvokeParam;

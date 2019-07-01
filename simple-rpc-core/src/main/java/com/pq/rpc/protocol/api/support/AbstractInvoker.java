@@ -146,7 +146,7 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
                     },invokeParam);
                 }
                 //扫描完整条过滤连,此时已经做完所有前处理,可以调用真正的invoker执行调用逻辑
-                //调用之前先将filterIndex置零
+                //调用之前先将filterIndex置零   //TODO why
                 filterIndex.get().set(0);
                 //这里是调用delegate内部的AbstractInvoker对象的invoke()方法
                 return getDelegate().invoke(invokeParam);

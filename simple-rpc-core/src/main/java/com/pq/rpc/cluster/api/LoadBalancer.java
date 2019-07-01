@@ -1,5 +1,6 @@
 package com.pq.rpc.cluster.api;
 
+import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.config.ReferenceConfig;
 import com.pq.rpc.protocol.api.Invoker;
 
@@ -23,8 +24,7 @@ public interface LoadBalancer {
      * 利用某种负载均衡策略选择一个抽象服务调用者
      * @param availableInvokers 可用服务列表
      *
-     * TODO add @invokerParam
      * @return Invoker对象
      */
-    Invoker select(List<Invoker> availableInvokers);
+    Invoker select(List<Invoker> availableInvokers, RPCRequest request);
 }
