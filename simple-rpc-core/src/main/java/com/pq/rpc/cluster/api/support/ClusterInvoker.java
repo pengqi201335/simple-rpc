@@ -64,7 +64,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
      * 将addressInvokers中的服务提供者集合转换为列表并返回
      * @return 可用服务列表
      */
-    private List<Invoker> getAvailableInvokers(){
+    public List<Invoker> getAvailableInvokers(){
         return new ArrayList<>(addressInvokers.values());
     }
 
@@ -92,7 +92,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
 
             //如果调用过程出现错误,抛出异常
             if(response.hasError()){
-                //TODO recycle
+                response.recycle();     //回收RPCResponse对象
                 throw new RPCException(response.getErrorCause(),
                         ExceptionEnum.REMOTE_SERVICE_INVOCATION_FAILED,
                         "REMOTE_SERVICE_INVOCATION_FAILED");
@@ -102,7 +102,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
             return response;
         }catch (RPCException e){
             //调用过程发生异常,启用集群容错机制
-            return globalConfig.getClusterConfig().getFaultToleranceHandlerInstance().handler(this,invokeParam,e);
+            return globalConfig.getClusterConfig().getFaultToleranceHandlerInstance().handle(this,invokeParam,e);
         }
     }
 
@@ -207,7 +207,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
             invoker = globalConfig.
                     getClusterConfig().
                     getLoadBalancerInstance().
-                    select(availableInvokers, ((RPCInvokeParam)invokeParam).getRPCRequest());
+                    select(availableInvokers, ((RPCInvokeParam)invokeParam).getRpcRequest());
             if(invoker.isAvailable()){
                 return invoker;
             }else{

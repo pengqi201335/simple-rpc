@@ -24,10 +24,6 @@ public class RPCInvokeParam implements InvokeParam {
 
     protected ReferenceConfig referenceConfig;
 
-    public RPCRequest getRPCRequest(){
-        return rpcRequest;
-    }
-
     @Override
     public String getInterfaceName() {
         return rpcRequest.getInterfaceName();

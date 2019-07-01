@@ -13,7 +13,6 @@ import java.io.Serializable;
  * @author pengqi
  * create at 2019/6/20
  *
- * //TODO Recycler
  */
 @Data
 public class RPCResponse implements Serializable {

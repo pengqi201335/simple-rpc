@@ -22,7 +22,10 @@ public enum ExceptionEnum {
     TRANSPORT_FAILURE("通信层异常"),
     SERIALIZE_ERROR("序列化异常"),
     DESERIALIZE_ERROR("反序列化异常"),
-    REGISTRY_ERROR("ZK异常");
+    REGISTRY_ERROR("ZK异常"),
+    NO_AVAILABLE_SERVICE("无可用服务"),
+    EXCEEDED_RETRIES("超出重试次数"),
+    VALUE_OF_MUST_BE_APPLIED_TO_EXTENSION_ENUM_TYPE("调用valueOf的枚举类必须实现ExtensionEnumType接口");
 
 
     private String errorMessage;
