@@ -51,14 +51,14 @@ public class CallbackInvocation extends AbstractInvocation {
     /**
      * 根据RPC请求对象和引用配置对象生成一个callback实例的键
      */
-    private String generateCallbackHandlerKey(RPCRequest request,ReferenceConfig referenceConfig){
+    public static String generateCallbackHandlerKey(RPCRequest request,ReferenceConfig referenceConfig){
         return request.getRequestID()+"."+request.getParameterTypes()[referenceConfig.getCallbackParamIndex()];
     }
 
     /**
      * 根据RPC请求对象生成一个callback实例的键
      */
-    private String generateCallbackHandlerKey(RPCRequest request){
+    public static String generateCallbackHandlerKey(RPCRequest request){
         return request.getRequestID()+"."+request.getInterfaceName();
     }
 }

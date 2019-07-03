@@ -144,7 +144,9 @@ public class ClusterInvoker<T> implements Invoker<T> {
             if(!newAddressServiceURLS.containsKey(cur.getKey())){
                 //当前服务已下线,删除对应的服务提供者
                 log.info("PROVIDER:"+cur.getKey()+"IS ALREADY OFFLINE");
-                //TODO 断开与对应服务器终端的连接
+                //断开与对应服务器终端的连接
+                //因为client是在protocol层配置的,所以要先拿到protocol实例,再关闭与对应address的连接
+                ((AbstractRemoteProtocol)globalConfig.getProtocol()).closeEndpoint(cur.getKey());
 
                 //移除对应的服务provider
                 iter.remove();

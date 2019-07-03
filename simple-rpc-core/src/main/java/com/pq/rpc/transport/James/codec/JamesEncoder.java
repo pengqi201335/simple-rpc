@@ -48,13 +48,15 @@ public class JamesEncoder extends MessageToByteEncoder<Message> {
             //序列化请求对象
             byte[] bytes = serializer.serialize(msg.getRequest());
             byteBuf.writeBytes(bytes);
-            //TODO Recycle
+            //将msg中的request对象回收
+            msg.getRequest().recycle();
         }else if(msg.getType()==Message.RESPONSE){
             //消息为响应对象
             //序列化响应对象
             byte[] bytes = serializer.serialize(msg.getResponse());
             byteBuf.writeBytes(bytes);
-            //
+            //将msg中的response对象回收
+            msg.getResponse().recycle();
         }
     }
 }

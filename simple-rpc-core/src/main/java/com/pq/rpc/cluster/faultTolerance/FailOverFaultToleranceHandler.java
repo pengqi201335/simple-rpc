@@ -21,7 +21,7 @@ import java.util.*;
  * create at 2019/7/1
  */
 @Slf4j
-public class failOverFaultToleranceHandler implements FaultToleranceHandler {
+public class FailOverFaultToleranceHandler implements FaultToleranceHandler {
 
     /**
      * 集群容错处理方法,配置不同的容错机制有不同的实现

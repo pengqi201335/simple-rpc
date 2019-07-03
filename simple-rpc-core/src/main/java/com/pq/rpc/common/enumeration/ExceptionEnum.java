@@ -25,7 +25,9 @@ public enum ExceptionEnum {
     REGISTRY_ERROR("ZK异常"),
     NO_AVAILABLE_SERVICE("无可用服务"),
     EXCEEDED_RETRIES("超出重试次数"),
-    VALUE_OF_MUST_BE_APPLIED_TO_EXTENSION_ENUM_TYPE("调用valueOf的枚举类必须实现ExtensionEnumType接口");
+    VALUE_OF_MUST_BE_APPLIED_TO_EXTENSION_ENUM_TYPE("调用valueOf的枚举类必须实现ExtensionEnumType接口"),
+    EXTENSION_CONFIG_ERROR("扩展点配置出现错误"),
+    NO_SUPPORTED_INSTANCE("无可用服务");
 
 
     private String errorMessage;

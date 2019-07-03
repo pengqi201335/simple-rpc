@@ -5,8 +5,12 @@ import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
+import com.pq.rpc.config.ReferenceConfig;
+import com.pq.rpc.config.ServiceConfig;
+import com.pq.rpc.invocation.callback.CallbackInvocation;
 import com.pq.rpc.transport.James.constance.JamesConstant;
 import com.pq.rpc.transport.api.support.AbstractClient;
+import com.pq.rpc.transport.api.support.RPCTaskRunner;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -186,7 +190,8 @@ public abstract class AbstractNettyClient extends AbstractClient {
         CompletableFuture<RPCResponse> responseFuture = new CompletableFuture<>();
         RPCThreadSharedContext.registryResponseFuture(request.getRequestID(),responseFuture);
 
-        //TODO writeAndFlush
+        //将请求写入channel并出站
+        this.futureChannel.writeAndFlush(request);
 
         log.info("请求已发送至:{}",getServiceURL().getServiceAddress());
         return responseFuture;
@@ -216,7 +221,12 @@ public abstract class AbstractNettyClient extends AbstractClient {
      */
     @Override
     public void handleCallbackRequest(RPCRequest request, ChannelHandlerContext ctx) {
-        //TODO callback
+        ServiceConfig serviceConfig = RPCThreadSharedContext.getAndRemoveHandler(
+                CallbackInvocation.generateCallbackHandlerKey(request,
+                        ReferenceConfig.getReferenceConfigByInterfaceName(request.getInterfaceName()))
+        );
+        //将回调任务提交给线程池处理
+        getGlobalConfig().getClientExecutor().submit(new RPCTaskRunner(ctx,request,serviceConfig));
     }
 
     @Override

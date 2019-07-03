@@ -12,8 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 全局配置
- * 用来维护几个核心配置类的实例
+ * 全局配置(单例)
+ * 用来维护几个核心配置类(也是单例)的实例
  *
  * @author pengqi
  * create at 2019/6/21
