@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e31f0ac2-9458-44f8-bb72-0e1c1f4bab85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/pengqi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/pengqi.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCConsumerBeanPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCProviderBeanPostProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/InvocationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/InvocationType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,28 +26,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/InvocationType.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/AbstractBeanPostProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+            <state relative-caret-position="231">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCAutoConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="830">
+              <caret line="73" column="110" lean-forward="true" selection-start-line="73" selection-start-column="110" selection-end-line="73" selection-end-column="110" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#802#803#0" expanded="true" />
-                <element signature="e#846#847#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ProxyFactoryType.java">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="630">
+              <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -52,7 +59,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/RegistryType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="231">
               <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -62,13 +69,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/SerializeType.java">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/config/RegistryConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="567">
+              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -76,17 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="51" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/cluster/api/support/ClusterInvoker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1391">
-              <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+            <state relative-caret-position="227">
+              <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,28 +90,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/annotation/RPCReference.java">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCProperties.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/AbstractBeanPostProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/config/GlobalConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="294">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,13 +102,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/executor/threadPool/ThreadPoolTaskExecutor.java">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="588">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCConsumerBeanPostProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCProviderBeanPostProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -159,10 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/serialize/jdk/JDKSerializer.java" />
-        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/serialize/json/JsonSerializer.java" />
-        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/serialize/api/support/AbstractSerializer.java" />
-        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/serialize/protostuff/ProtostuffSerializer.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/serialize/hessian/HessianSerializer.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/registry/api/support/AbstractServiceRegistry.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/registry/api/ServiceRegistry.java" />
@@ -187,7 +175,6 @@
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/cluster/api/FaultToleranceHandler.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/constant/ClusterConstant.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/cluster/faultTolerance/failOverFaultToleranceHandler.java" />
-        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/support/ExtensionBaseType.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/domain/RPCResponse.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/invocation/callback/CallbackInvocation.java" />
@@ -206,10 +193,15 @@
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ProxyFactoryType.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/RegistryType.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/SerializeType.java" />
-        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java" />
         <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/annotation/RPCReference.java" />
-        <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/AbstractBeanPostProcessor.java" />
         <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/InvocationType.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCConsumerBeanPostProcessor.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCProviderBeanPostProcessor.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/AbstractBeanPostProcessor.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCProperties.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java" />
+        <option value="$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCAutoConfiguration.java" />
       </list>
     </option>
   </component>
@@ -502,12 +494,12 @@
       <workItem from="1562073589436" duration="6572000" />
       <workItem from="1562155819248" duration="8986000" />
       <workItem from="1562226903577" duration="189000" />
-      <workItem from="1562227108363" duration="2316000" />
+      <workItem from="1562227108363" duration="7148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297949000" />
+    <option name="totallyTimeSpent" value="302781000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -520,8 +512,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2531983" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2531983" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -538,7 +531,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.329718" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32901832" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.6796116" />
       <window_info anchor="bottom" id="Spring" order="13" weight="0.32900432" />
@@ -588,50 +581,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/cluster/loadBalance/RandomLoadBalancer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/cluster/loadBalance/RoundRobinLoadBalancer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/cluster/loadBalance/WeightedRandomLoadBalancer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="891">
-          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/filter/Filter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/protocol/api/support/AbstractRemoteInvoker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/protocol/api/support/AbstractProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
@@ -736,13 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/domain/RPCResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -771,13 +713,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
@@ -926,26 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ProxyFactoryType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/RegistryType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/SerializeType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -953,13 +868,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="51" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -1000,21 +908,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/AbstractBeanPostProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/InvocationType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+        <state relative-caret-position="683">
+          <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#802#803#0" expanded="true" />
             <element signature="e#846#847#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ProxyFactoryType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCConsumerBeanPostProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/RPCProviderBeanPostProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/beanPostProcessor/AbstractBeanPostProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/config/RegistryConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/ExtensionLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/RegistryType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-core/src/main/java/com/pq/rpc/common/enumeration/ExceptionEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-rpc-spring-boot-starter/src/main/java/com/pq/rpc/autoconfig/RPCAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="73" column="110" lean-forward="true" selection-start-line="73" selection-start-column="110" selection-end-line="73" selection-end-column="110" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
