@@ -28,7 +28,8 @@ public enum ExceptionEnum {
     VALUE_OF_MUST_BE_APPLIED_TO_EXTENSION_ENUM_TYPE("调用valueOf的枚举类必须实现ExtensionEnumType接口"),
     EXTENSION_CONFIG_ERROR("扩展点配置出现错误"),
     NO_SUPPORTED_INSTANCE("无可用服务"),
-    SIMPLE_RPC_CONFIG_ERROR("simple-rpc依赖配置发生错误");
+    SIMPLE_RPC_CONFIG_ERROR("simple-rpc依赖配置发生错误"),
+    SERVICE_DID_NOT_IMPLEMENT_ANY_INTERFACE("该类未实现任何服务接口");
 
 
     private String errorMessage;

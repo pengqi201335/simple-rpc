@@ -75,7 +75,7 @@ public abstract class AbstractProxyFactory implements RPCProxyFactory {
      * 根据抽象调用者创建代理对象
      * <p>
      * for consumer
-     * <p>
+     * </p>
      * proxy调用服务时，实际上是通过invoker实现的，而invoker是cluster层的对象
      * 对客户端来说，invoker将通过远程通信来调用远程服务
      * 而对于服务端来说，invoker将直接调用本地服务
@@ -100,7 +100,7 @@ public abstract class AbstractProxyFactory implements RPCProxyFactory {
      * 根据服务的本地代理及其类类型,创建一个对应的服务调用者
      * <p>
      * for provider
-     *
+     *</p>
      * @param proxy 本地代理
      * @param clazz 代理对象类类型
      * @return 本地服务的invoker
