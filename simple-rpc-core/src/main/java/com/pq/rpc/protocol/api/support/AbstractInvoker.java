@@ -6,7 +6,7 @@ import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.enumeration.InvocationType;
 import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.config.GlobalConfig;
-import com.pq.rpc.filter.Filter;
+import com.pq.rpc.client.filter.Filter;
 import com.pq.rpc.protocol.api.InvokeParam;
 import com.pq.rpc.protocol.api.Invoker;
 import com.pq.rpc.registry.api.ServiceURL;

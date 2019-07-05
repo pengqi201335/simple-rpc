@@ -32,7 +32,7 @@ public class ExtensionLoader {
     /**
      * 加载指定目录下的配置文件
      */
-    private void loadResources(){
+    public void loadResources(){
         URL parent = this.getClass().getClassLoader().getResource("/rpc");
         if(parent!=null){
             log.info("开始读取{/rpc}目录下的配置文件...");
@@ -100,8 +100,8 @@ public class ExtensionLoader {
      * @return 服务接口实例
      */
     @SuppressWarnings("unchecked")
-    private <T> T load(Class<T> interfaceClass,Class enumType,String type){
-        ExtensionBaseType<T> extensionBaseType = ExtensionBaseType.valueOf(enumType,type);
+    public  <T> T load(Class<T> interfaceClass,Class enumType,String type){
+        ExtensionBaseType<T> extensionBaseType = ExtensionBaseType.valueOf(enumType,type.toUpperCase());
         //针对应用内的依赖
         if(extensionBaseType!=null){
             return extensionBaseType.getInstance();     //返回枚举单例中对应的实现类实例
@@ -124,7 +124,7 @@ public class ExtensionLoader {
      * @param <T> 接口类型
      * @return 实例列表
      */
-    private <T> List<T> load(Class<T> interfaceCLass){
+    public  <T> List<T> load(Class<T> interfaceCLass){
         if(!extensionMap.containsKey(interfaceCLass.getName())){
             return Collections.emptyList();
         }
@@ -140,7 +140,7 @@ public class ExtensionLoader {
      * @param alias 实例别名
      * @param instance 实例
      */
-    private void registry(Class<?> interfaceClass,String alias,Object instance){
+    public void registry(Class<?> interfaceClass,String alias,Object instance){
         if(!extensionMap.containsKey(interfaceClass.getName())){
             extensionMap.put(interfaceClass.getName(),new HashMap<>());
         }

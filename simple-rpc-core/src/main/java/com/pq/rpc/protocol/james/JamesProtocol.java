@@ -4,7 +4,7 @@ import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.config.ReferenceConfig;
 import com.pq.rpc.config.ServiceConfig;
-import com.pq.rpc.filter.Filter;
+import com.pq.rpc.client.filter.Filter;
 import com.pq.rpc.protocol.api.Exporter;
 import com.pq.rpc.protocol.api.Invoker;
 import com.pq.rpc.protocol.api.support.AbstractRemoteProtocol;

@@ -3,7 +3,7 @@ package com.pq.rpc.config;
 import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.config.support.AbstractConfig;
-import com.pq.rpc.filter.Filter;
+import com.pq.rpc.client.filter.Filter;
 import com.pq.rpc.protocol.api.Invoker;
 import lombok.Builder;
 import lombok.Data;

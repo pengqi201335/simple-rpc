@@ -7,9 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="simple-rpc-api" />
+        <module name="simple-rpc-client" />
         <module name="simple-rpc-core" />
+        <module name="simple-rpc-server" />
         <module name="simple-rpc-spring-boot-starter" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="simple-rpc-api" options="-parameters" />
+      <module name="simple-rpc-client" options="-parameters" />
+      <module name="simple-rpc-server" options="-parameters" />
+    </option>
   </component>
 </project>
