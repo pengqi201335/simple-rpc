@@ -156,6 +156,6 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
 
     @Override
     public boolean isAvailable() {
-        return false;
+        return true;
     }
 }

@@ -29,7 +29,7 @@ public abstract class AbstractRemoteInvoker<T> extends AbstractInvoker<T> {
 
     @Override
     public boolean isAvailable() {
-        return client.isAvailable();
+        return getClient().isAvailable();
     }
 
     public void setClient(Client client){

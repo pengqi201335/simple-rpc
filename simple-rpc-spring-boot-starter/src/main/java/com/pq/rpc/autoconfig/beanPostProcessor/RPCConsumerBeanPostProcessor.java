@@ -21,7 +21,7 @@ public class RPCConsumerBeanPostProcessor extends AbstractBeanPostProcessor{
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Class<?> beanClass = bean.getClass();
         //扫描bean的所有字段
-        Field[] fields = beanClass.getFields();
+        Field[] fields = beanClass.getDeclaredFields();
         for(Field field:fields){
             field.setAccessible(true);  //将所有字段设为可访问的
             //获取字段类型(对引用服务来说就是接口类型)

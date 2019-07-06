@@ -2,6 +2,7 @@ package com.pq.rpc.registry.zookeeper;
 
 import com.pq.rpc.common.enumeration.ExceptionEnum;
 import com.pq.rpc.common.exception.RPCException;
+import com.pq.rpc.config.RegistryConfig;
 import com.pq.rpc.registry.api.ServiceAddOrUpdateCallback;
 import com.pq.rpc.registry.api.ServiceOfflineCallback;
 import com.pq.rpc.registry.api.ServiceURL;
@@ -35,6 +36,10 @@ public class ZKServiceRegistry extends AbstractServiceRegistry {
     private volatile Thread discoveringThread;
 
     private static final long PARK_TIME = 1000000000L;
+
+    public ZKServiceRegistry(RegistryConfig registryConfig){
+        this.registryConfig = registryConfig;
+    }
 
     @Override
     public void init() {

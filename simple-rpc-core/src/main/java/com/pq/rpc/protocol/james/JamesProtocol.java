@@ -65,7 +65,7 @@ public class JamesProtocol extends AbstractRemoteProtocol {
         invoker.setInterfaceName(referenceConfig.getInterfaceName());
         invoker.setInterfaceClass(referenceConfig.getInterfaceClass());
         invoker.setGlobalConfig(getGlobalConfig());
-        invoker.setClient(doInitClient(serviceURL));
+        invoker.setClient(initClient(serviceURL));
         List<Filter> filters = referenceConfig.getFilters();
         if(filters.size()==0){
             //没有配置过滤器,直接返回invoker
@@ -96,10 +96,10 @@ public class JamesProtocol extends AbstractRemoteProtocol {
             //将服务暴露到注册中心
             serviceConfig.getRegistryConfig().getServiceRegistryInstance().register(
                     //主机IP+端口号
-                    InetAddress.getLocalHost().getHostAddress()+":"+getGlobalConfig().getPort(),
+                    "192.168.1.116"+":"+getGlobalConfig().getPort(),
                     localInvoker.getInterfaceName(),
                     localInvoker.getInterfaceClass());
-        }catch (UnknownHostException e){
+        }catch (Exception e){
             //获取本地主机IP地址失败
             throw new RPCException(ExceptionEnum.FAIL_TO_GET_LOCALHOST_ADDRESS,"FAIL_TO_GET_LOCALHOST_ADDRESS");
         }

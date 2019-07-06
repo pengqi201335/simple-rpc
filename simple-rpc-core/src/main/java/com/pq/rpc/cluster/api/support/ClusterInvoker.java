@@ -102,6 +102,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
             return response;
         }catch (RPCException e){
             //调用过程发生异常,启用集群容错机制
+            log.info("正在启动集群容错机制......");
             return globalConfig.getClusterConfig().getFaultToleranceHandlerInstance().handle(this,invokeParam,e);
         }
     }
@@ -173,7 +174,7 @@ public class ClusterInvoker<T> implements Invoker<T> {
             }
         }else{
             //新增服务地址
-            log.info("NEW SERVER ADDED,INTERFACE_NAME:"+interfaceName+"NEW_SERVICE_URL:"+serviceURL);
+            log.info("NEW SERVER ADDED,INTERFACE_NAME:"+interfaceName+",NEW_SERVICE_URL:"+serviceURL);
             //引用远程服务,获得protocol层的Invoker对象
             //通过接口名来获取对应的ReferenceConfig对象,因为引用同一个服务的用户共享同一个ReferenceConfig
             Invoker protocolInvoker = globalConfig.getProtocolConfig().getProtocolInstance().refer(serviceURL,

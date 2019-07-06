@@ -4,6 +4,7 @@ import com.pq.rpc.cluster.api.FaultToleranceHandler;
 import com.pq.rpc.cluster.api.LoadBalancer;
 import com.pq.rpc.executor.api.TaskExecutor;
 import com.pq.rpc.protocol.api.Protocol;
+import com.pq.rpc.proxy.api.RPCProxyFactory;
 import com.pq.rpc.registry.api.ServiceRegistry;
 import com.pq.rpc.serialize.api.Serializer;
 import lombok.AllArgsConstructor;
@@ -64,5 +65,9 @@ public class GlobalConfig {
 
     public ServiceRegistry getServiceRegistry(){
         return registryConfig.getServiceRegistryInstance();
+    }
+
+    public RPCProxyFactory getProxyFactory(){
+        return applicationConfig.getRPCProxyFactoryInstance();
     }
 }

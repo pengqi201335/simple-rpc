@@ -3,8 +3,11 @@ package com.pq.rpc.proxy.api.support;
 import com.pq.rpc.common.domain.GlobalRecycler;
 import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
+import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.config.ReferenceConfig;
+import com.pq.rpc.protocol.api.InvokeParam;
 import com.pq.rpc.protocol.api.Invoker;
+import com.pq.rpc.protocol.api.support.AbstractInvoker;
 import com.pq.rpc.protocol.api.support.RPCInvokeParam;
 import com.pq.rpc.proxy.api.RPCProxyFactory;
 
@@ -107,6 +110,37 @@ public abstract class AbstractProxyFactory implements RPCProxyFactory {
      */
     @Override
     public <T> Invoker<T> getInvoker(T proxy, Class<T> clazz) {
-        return null;
+        return new AbstractInvoker<>() {
+            @Override
+            public Class<T> getInterfaceClass() {
+                return clazz;
+            }
+
+            @Override
+            public String getInterfaceName() {
+                return clazz.getName();
+            }
+
+            /**
+             * 调用服务，返回调用结果
+             *
+             * @param invokeParam 参数
+             * @return RPCResponse对象
+             */
+            @Override
+            public RPCResponse invoke(InvokeParam invokeParam) throws RPCException {
+                //复用RPCResponse对象
+                RPCResponse response = GlobalRecycler.reuse(RPCResponse.class);
+                //让本地代理来处理调用请求
+                try{
+                    Method method = proxy.getClass().getMethod(invokeParam.getMethodName(),invokeParam.getParameterTypes());
+                    response.setRequestID(invokeParam.getRequestID());
+                    response.setResult(method.invoke(proxy,invokeParam.getParameters()));
+                }catch (Exception e){
+                    response.setErrorCause(e);
+                }
+                return response;
+            }
+        };
     }
 }

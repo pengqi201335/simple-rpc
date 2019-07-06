@@ -4,6 +4,7 @@ import com.pq.rpc.autoconfig.beanPostProcessor.RPCConsumerBeanPostProcessor;
 import com.pq.rpc.autoconfig.beanPostProcessor.RPCProviderBeanPostProcessor;
 import com.pq.rpc.cluster.api.FaultToleranceHandler;
 import com.pq.rpc.cluster.api.LoadBalancer;
+import com.pq.rpc.cluster.api.support.AbstractLoadBalancer;
 import com.pq.rpc.cluster.faultTolerance.FailOverFaultToleranceHandler;
 import com.pq.rpc.cluster.loadBalance.LeastActiveLoadBalancer;
 import com.pq.rpc.common.ExtensionLoader;
@@ -16,6 +17,7 @@ import com.pq.rpc.client.filter.impl.ActivityStatisticsFilter;
 import com.pq.rpc.protocol.api.support.AbstractProtocol;
 import com.pq.rpc.proxy.api.RPCProxyFactory;
 import com.pq.rpc.registry.api.ServiceRegistry;
+import com.pq.rpc.registry.zookeeper.ZKServiceRegistry;
 import com.pq.rpc.serialize.api.Serializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -44,14 +46,14 @@ public class RPCAutoConfiguration implements InitializingBean {
     @Autowired
     RPCProperties rpcProperties;
 
-    @Bean
+    @Bean(initMethod = "init",destroyMethod = "close")
     public RegistryConfig registryConfig(){
         RegistryConfig registryConfig = rpcProperties.getRegistryConfig();
         if(registryConfig==null){
             throw new RPCException(ExceptionEnum.SIMPLE_RPC_CONFIG_ERROR,"必须配置registry");
         }
         //注入依赖
-        registryConfig.setServiceRegistryInstance(extensionLoader.load(ServiceRegistry.class, RegistryType.class,registryConfig.getType()));
+        registryConfig.setServiceRegistryInstance(new ZKServiceRegistry(registryConfig));
         log.info("registryConfig:{}",registryConfig);
         return registryConfig;
     }
@@ -69,7 +71,7 @@ public class RPCAutoConfiguration implements InitializingBean {
         return applicationConfig;
     }
 
-    @Bean
+    @Bean(destroyMethod = "close")
     public ProtocolConfig protocolConfig(ApplicationConfig applicationConfig, RegistryConfig registryConfig, ClusterConfig clusterConfig){
         ProtocolConfig protocolConfig = rpcProperties.getProtocolConfig();
         if(protocolConfig==null){
@@ -79,12 +81,16 @@ public class RPCAutoConfiguration implements InitializingBean {
         AbstractProtocol protocol = extensionLoader.load(AbstractProtocol.class,ProtocolType.class,protocolConfig.getType());
         //初始化protocol中的全局配置对象
         protocol.init(GlobalConfig.builder().
+                protocolConfig(protocolConfig).
                 applicationConfig(applicationConfig).
                 registryConfig(registryConfig).
                 clusterConfig(clusterConfig).
-                protocolConfig(protocolConfig).
                 build());
         protocolConfig.setProtocolInstance(protocol);
+        ((AbstractLoadBalancer)clusterConfig.getLoadBalancerInstance()).updateGlobalConfig(GlobalConfig.
+                builder().
+                protocolConfig(protocolConfig).
+                build());
         //配置Executor
         Executors executors = protocolConfig.getExecutors();
         if(executors!=null){
@@ -106,7 +112,7 @@ public class RPCAutoConfiguration implements InitializingBean {
     }
 
     @Bean
-    public ClusterConfig clusterConfig(){
+    public ClusterConfig clusterConfig(ApplicationConfig applicationConfig,RegistryConfig registryConfig){
         ClusterConfig clusterConfig = rpcProperties.getClusterConfig();
         if(clusterConfig==null){
             throw new RPCException(ExceptionEnum.SIMPLE_RPC_CONFIG_ERROR,"必须配置cluster");
@@ -128,6 +134,12 @@ public class RPCAutoConfiguration implements InitializingBean {
                 LoadBalanceType.class,
                 clusterConfig.getLoadBalance()
         ));
+
+        ((AbstractLoadBalancer)clusterConfig.getLoadBalancerInstance()).updateGlobalConfig(GlobalConfig.builder().
+                applicationConfig(applicationConfig).
+                registryConfig(registryConfig).
+                clusterConfig(clusterConfig).
+                build());
 
         //如果负载均衡策略为最小活跃度算法,则要加载一个统计服务调用次数的filter
         if(clusterConfig.getLoadBalancerInstance() instanceof LeastActiveLoadBalancer){

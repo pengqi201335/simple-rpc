@@ -61,7 +61,7 @@ public class ZKSupport {
     public void createNodeIfAbsent(String data,String path){
         try{
             byte[] bytes = data.getBytes(Charset.forName("UTF-8"));     //节点数据
-            zooKeeper.create(path,bytes,ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL);  //创建一个临时节点
+            zooKeeper.create(path+"/"+data,bytes,ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL);  //创建一个临时节点
             log.info("成功创建一个zk节点({}—>{})",path,data);
         }catch (KeeperException e){
             if(e instanceof KeeperException.NodeExistsException){

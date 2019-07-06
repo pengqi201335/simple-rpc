@@ -23,6 +23,27 @@ public abstract class AbstractLoadBalancer implements LoadBalancer {
 
     private GlobalConfig globalConfig;
 
+    public void updateGlobalConfig(GlobalConfig globalConfig){
+        if(this.globalConfig==null){
+            //用于clusterConfig
+            this.globalConfig = globalConfig;
+        }else{
+            //用于protocolConfig,其实只需要配置ProtocolConfig
+            if(this.globalConfig.getApplicationConfig()==null){
+                this.globalConfig.setApplicationConfig(globalConfig.getApplicationConfig());
+            }
+            if(this.globalConfig.getRegistryConfig()==null){
+                this.globalConfig.setRegistryConfig(globalConfig.getRegistryConfig());
+            }
+            if(this.globalConfig.getProtocolConfig()==null){
+                this.globalConfig.setProtocolConfig(globalConfig.getProtocolConfig());
+            }
+            if(this.globalConfig.getClusterConfig()==null){
+                this.globalConfig.setClusterConfig(globalConfig.getClusterConfig());
+            }
+        }
+    }
+
     /**
      * 服务接口名与对应的clusterInvoker对象的映射表
      * k-v分别代表  k:服务接口名  v:与该服务唯一对应的clusterInvoker

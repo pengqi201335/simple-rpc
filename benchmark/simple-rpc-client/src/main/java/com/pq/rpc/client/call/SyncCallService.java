@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class SyncCallService {
 
-    @RPCReference
     private SimpleRPCService rpcService;    //远程服务的本地代理
 
     public void syncCallTest(){

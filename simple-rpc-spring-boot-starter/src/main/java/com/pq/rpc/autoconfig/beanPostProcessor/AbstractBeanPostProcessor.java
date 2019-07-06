@@ -34,6 +34,17 @@ public abstract class AbstractBeanPostProcessor implements BeanPostProcessor, Ap
         config.init(globalConfig);
     }
 
+    public static void initConfig(ApplicationContext ctx,AbstractConfig config){
+        config.init(
+                GlobalConfig.builder()
+                .applicationConfig(ctx.getBean(ApplicationConfig.class))
+                .protocolConfig(ctx.getBean(ProtocolConfig.class))
+                .registryConfig(ctx.getBean(RegistryConfig.class))
+                .clusterConfig(ctx.getBean(ClusterConfig.class))
+                .build()
+        );
+    }
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ac = applicationContext;

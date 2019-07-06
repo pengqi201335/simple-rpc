@@ -58,11 +58,9 @@ public abstract class AbstractNettyServer extends AbstractServer {
                     .option(ChannelOption.SO_RCVBUF,32*1024)
                     .option(ChannelOption.TCP_NODELAY,true);
             //同步等待端口绑定完成
-            this.channelFuture = serverBootstrap.bind(InetAddress.getLocalHost().getHostAddress(),getGlobalConfig().getPort()).sync();
-            log.info("服务端启动,当前服务器类型:{}",this.getClass().getSimpleName());
-        }catch (UnknownHostException e){
-            e.printStackTrace();
-        }catch (InterruptedException e){
+            this.channelFuture = serverBootstrap.bind("192.168.1.116",getGlobalConfig().getPort()).sync();
+            log.info("服务端启动,当前服务器类型:{},当前服务IP:{}",this.getClass().getSimpleName(),"192.168.1.116:"+getGlobalConfig().getPort());
+        } catch (InterruptedException e){
             e.getCause();
         }
     }

@@ -53,6 +53,7 @@ public class FailOverFaultToleranceHandler implements FaultToleranceHandler {
                 throw new RPCException(ExceptionEnum.NO_AVAILABLE_SERVICE,"NO_AVAILABLE_SERVICE");
             }
             try{
+                log.info("failover正在重试...");
                 return clusterInvoker.invokeForFaultTolerance(invokers,invokeParam);
             }catch (RPCException e1){
                 e1.printStackTrace();
