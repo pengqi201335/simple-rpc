@@ -1,4 +1,4 @@
-#simple-rpc project
+# simple-rpc project
 simple-rpc是一个基于netty+springboot+zookeeper的分布式服务框架，具有服务注册与发现、远程服务调用和集群负载均衡等基本功能。架构上参考了[dubbo](https://github.com/apache/dubbo)的分层设计，各功能模块放在不同的包中，通过API相互关联实现解耦。
 ## 功能列表
 * 基于[Netty](https://github.com/netty/netty)实现客户端与服务端之间的通信，包括空闲检测、心跳保持、解决粘包半包等问题
@@ -19,7 +19,7 @@ config层为配置层，定义了各功能模块的配置类，主要包括协�
 ReferenceConfig是服务引用配置类，定义了引用服务的类型及其引用方式(异步、同步、回调等)，其内部持有远程服务的本地代理和服务的抽象调用者，二者在ReferenceConfig被配置时初始化。而ReferenceConfig则是在spring容器初始化完成之后，对每个Bean调用后置处理器时，在后置处理器中被初始化的。
 
 即，先通过springboot的自动配置功能将用户配置文件中的实例和用户自定义bean配置完成，并注册到spring容器中，然后对每个bean调用后置处理器，扫描其所有字段，看是否有`@RPCReference`注解，一旦发现有该注解，就根据该注解的属性创建一个ReferenceConfig实例，调用代理工厂生成对应的远程服务本地代理，注入到该字段中。如下代码所示：
-```
+```java
 //扫描bean的所有字段
 Field[] fields = beanClass.getDeclaredFields();
 for(Field field:fields){
@@ -48,7 +48,7 @@ for(Field field:fields){
 ServiceConfig是服务暴露配置类，定义了服务类型及其调用方式，内部持有本地服务的代理对象和服务暴露后的抽象调用者以及一个export()方法，在ServiceConfig被初始化后立即调用该方法暴露服务(注册到zookeeper注册中心)。
 
 ServiceConfig的配置同样是在bean的后置处理器中完成，扫描所有的bean，判断其是否有`@RPCService`注解，有的话就根据注解属性创建一个ServiceConfig实例，并将该bean注入为该服务的本地代理。如下代码所示：
-```
+```java
 Class<?> beanClass = bean.getClass();
 RPCService service = beanClass.getAnnotation(RPCService.class);
 Class<?> interfaceClass = service.interfaceClass();
@@ -64,11 +64,11 @@ initConfig(serviceConfig);
 serviceConfig.export();     //暴露此服务
 ```
 其它的配置类则是根据用户配置的application.properties文件在RPCAutoConfiguration类中自动配置，以如下代码形式进行依赖注入：
-```
+```java
 applicationConfig.setRPCProxyFactoryInstance(extensionLoader.load(RPCProxyFactory.class, ProxyFactoryType.class,applicationConfig.getProxyFactoryName()));
 ```
 `extensionLoader`是自定义的一个扩展类加载器，用于加载配置实例，加载方式按应用内依赖和应用外依赖分为两种，如下所示，应用内的依赖通过枚举单例的方式注入，而应用外的依赖则根据配置文件使用反射的方式注入：
-```
+```java
 public <T> T load(Class<T> interfaceClass,Class enumType,String type){
     ExtensionBaseType<T> extensionBaseType = ExtensionBaseType.valueOf(enumType,type.toUpperCase());
     //针对应用内的依赖
@@ -82,7 +82,7 @@ public <T> T load(Class<T> interfaceClass,Class enumType,String type){
 }
 ```
 扫描配置文件并创建扩展点实例的方式：
-```
+```java
 public void loadResources(){
     URL parent = this.getClass().getClassLoader().getResource("/rpc");
     if(parent!=null){
@@ -94,7 +94,7 @@ public void loadResources(){
     }
 }
 ```
-```
+```java
 private void handleFile(File file){
         String interfaceName = file.getName();      //配置文件名为接口的全限定名
         try{
@@ -118,7 +118,7 @@ private void handleFile(File file){
 Proxy层为代理层，分别向ReferenceConfig和ServiceConfig提供`createProxy()`方法和`getInvoker()`方法，前者为引用远程服务的字段生成一个本地代理，后者在服务端暴露服务后返回一个抽象调用者Invoker，该invoker调用invoke()方法时实际上是在调用服务实现类的方法。
 
 如下代码所示为jdk动态代理的实现方式：
-```
+```java
 public class JDKProxyFactory extends AbstractProxyFactory {
     @Override
     @SuppressWarnings("unchecked")
@@ -134,7 +134,7 @@ public class JDKProxyFactory extends AbstractProxyFactory {
 }
 ```
 可以看到，代理对象实际上是调用了invokeProxyMethod()方法，而该方法是RPC调用的真正入口，方法核心代码：
-```
+```java
 request.setRequestID(UUID.randomUUID().toString());
 request.setInterfaceName(interfaceName);
 request.setMethodName(methodName);
@@ -162,7 +162,7 @@ cluster层为集群层，主要做两件事：负载均衡和集群容错。负�
 cluster层还有一个核心类ClusterInvoker，为集群层面的抽象调用者(引用同一服务的consumer共享一个ClusterInvoker)，ClusterInvoker维护了某个服务的服务列表，代理对象调用其invoke()方法时，先在该服务列表中做负载均衡选择一个可用服务，该可用服务的表现形式为Protocol层面的抽象调用者，实际上是调用protocolInvoker的invoke()方法。
 
 ClusterInvoker又是怎么维护某个服务的服务列表呢？如下代码所示：
-```
+```java
 private void init(){
     globalConfig.getRegistryConfig().getServiceRegistryInstance()
             .discover(interfaceName,
@@ -174,7 +174,7 @@ private void init(){
 
 ### Registry层
 registry层就是注册中心层，该层向外部提供的API如下所示：
-```
+```java
 public interface ServiceRegistry {
     void init();
     void discover(String interfaceName,ServiceOfflineCallback serviceOfflineCallback,ServiceAddOrUpdateCallback serviceAddOrUpdateCallback);
@@ -183,7 +183,7 @@ public interface ServiceRegistry {
 }
 ```
 主要的两个方法就是discover()和register()，分别用来发现服务和注册服务，目前只实现了zookeeper的注册中心，来看具体实现：
-```
+```java
 public void discover(String interfaceName, ServiceOfflineCallback serviceOfflineCallback, ServiceAddOrUpdateCallback serviceAddOrUpdateCallback) {
     watchInterface(interfaceName,serviceOfflineCallback,serviceAddOrUpdateCallback);    //发现服务并注册监听
 }
@@ -224,7 +224,7 @@ private ServiceURL watchService(String interfaceName,String address,ServiceAddOr
 }
 ```
 服务发现的主要逻辑就是根据服务接口名从zookeeper中获取节点数据并注册监听事件，重写监听事件处理方法process()，当监听事件发生时，再一次调用方法获取zookeeper节点数据，然后将节点数据作为参数调用回调函数，在回调函数呢中更新服务列表。
-```
+```java
 public void register(String serviceAddress, String interfaceName, Class<?> interfaceClass) {
     String path = generatePath(interfaceName);
     //先创建路径
@@ -239,7 +239,7 @@ public void register(String serviceAddress, String interfaceName, Class<?> inter
 protocol层是与底层网络通信直接交互的层，负责维护netty客户端和服务端实例以及protocol层面的Invoker。
 
 对于客户端来说，服务发现时返回的是ServiceURL对象，这是服务注册到zookeeper中的形式，clusterInvoker中要根据该serviceURL调用protocol实例的refer()方法来获得该服务在protocol层的抽象调用者protocolInvoker，如下代码所示：
-```
+```java
 public <T> Invoker<T> refer(ServiceURL serviceURL, ReferenceConfig<T> referenceConfig) {
     //创建一个面向James协议的调用者,负责提供getProcessor()方法与transport层交互
     JamesInvoker<T> invoker = new JamesInvoker<>();
@@ -259,7 +259,7 @@ public <T> Invoker<T> refer(ServiceURL serviceURL, ReferenceConfig<T> referenceC
 从以上代码可以看出，每个protocolInvoker都对应一个netty的客户端实例(目标服务器相同的invoker共享一个客户端实例)，做RPC调用时会通过该client实例提交RPC请求，并且在该invoker上又做了一层封装，主要用于过滤器链，过滤器用于在真正发起远程调用前做一些前置处理或远程调用结束返回时做一些后置处理，如统计某些服务被调用的次数用于最小活跃度负载均衡。
 
 而对于服务端来说，需要调用protocol实例的export()方法将服务以ServiceURL的形式注册到zookeeper中，如下代码所示：
-```
+```java
 public <T> Exporter<T> export(Invoker<T> localInvoker, ServiceConfig<T> serviceConfig) {
     JamesExporter<T> exporter = new JamesExporter<>();
     exporter.setInvoker(localInvoker);
@@ -282,7 +282,7 @@ public <T> Exporter<T> export(Invoker<T> localInvoker, ServiceConfig<T> serviceC
 主要就是将服务以ServiceURL的形式注册到zookeeper，并缓存在服务端的map中，供后续服务端处理RPC请求时使用。需要注意的一点是，在暴露服务之前要先开启netty服务端连接，防止客户端在zookeeper中拿到服务器地址并建立连接时，服务端连接还没有打开的情况出现。
 
 protocol层面的invoke逻辑也比较简单，在AbstractInvoker中实现：
-```
+```java
 public RPCResponse invoke(InvokeParam invokeParam) throws RPCException {
     Function<RPCRequest,Future<RPCResponse>> logic = getProcessor();
     if(logic==null){
@@ -293,7 +293,7 @@ public RPCResponse invoke(InvokeParam invokeParam) throws RPCException {
 }
 ```
 用到了函数式编程，调用具体协议invoker的getProcessor()方法创建一个函数对象，该函数逻辑就是向netty客户端提交RPC请求，然后选择具体的调用方式(同步调用、异步调用等)apply该函数，获取调用结果。面向James协议的invoker的getProcessor()方法如下所示：
-```
+```java
 protected Function<RPCRequest, Future<RPCResponse>> getProcessor() {
     //返回一个和传输层交互的函数
     return request -> getClient().submit(request);
