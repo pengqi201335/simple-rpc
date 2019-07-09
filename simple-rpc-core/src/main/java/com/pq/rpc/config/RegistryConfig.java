@@ -27,6 +27,12 @@ public class RegistryConfig {
 
     private ServiceRegistry serviceRegistryInstance;
 
+    public void init(){
+        if(serviceRegistryInstance!=null){
+            serviceRegistryInstance.init();
+        }
+    }
+
     /**
      * 关闭注册中心客户端
      */

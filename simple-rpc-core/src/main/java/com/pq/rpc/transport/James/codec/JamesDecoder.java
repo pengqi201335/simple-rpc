@@ -21,27 +21,27 @@ public class JamesDecoder extends ByteToMessageDecoder {
     /**
      * 单例模式,多个pipeline共享handler
      */
-    private static volatile JamesDecoder INSTANCE = null;
+//    private static volatile JamesDecoder INSTANCE = null;
 
     private Serializer serializer;  //序列化算法
 
-    private JamesDecoder(Serializer serializer){
+    public JamesDecoder(Serializer serializer){
         this.serializer = serializer;
     }
 
     //双重检测锁实现单例的延迟加载
-    public static JamesDecoder getInstance(Serializer serializer){
-        if(INSTANCE==null){
-            synchronized (JamesDecoder.class){
-                if(INSTANCE==null){
-                    synchronized (JamesDecoder.class){
-                        INSTANCE = new JamesDecoder(serializer);
-                    }
-                }
-            }
-        }
-        return INSTANCE;
-    }
+//    public static JamesDecoder getInstance(Serializer serializer){
+//        if(INSTANCE==null){
+//            synchronized (JamesDecoder.class){
+//                if(INSTANCE==null){
+//                    synchronized (JamesDecoder.class){
+//                        INSTANCE = new JamesDecoder(serializer);
+//                    }
+//                }
+//            }
+//        }
+//        return INSTANCE;
+//    }
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> list) {

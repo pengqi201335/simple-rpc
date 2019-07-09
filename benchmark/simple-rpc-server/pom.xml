@@ -17,8 +17,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.11</maven.compiler.source>
+        <maven.compiler.target>1.11</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -27,6 +27,20 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- 通用接口 -->
+        <dependency>
+            <groupId>com.pq.rpc</groupId>
+            <artifactId>simple-rpc-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 自定义的springboot-starter插件 -->
+        <dependency>
+            <groupId>com.pq.rpc</groupId>
+            <artifactId>simple-rpc-spring-boot-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

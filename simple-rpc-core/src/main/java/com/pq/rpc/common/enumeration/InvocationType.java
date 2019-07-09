@@ -1,6 +1,5 @@
 package com.pq.rpc.common.enumeration;
 
-import com.pq.rpc.common.enumeration.support.ExtensionBaseType;
 import com.pq.rpc.config.ReferenceConfig;
 import com.pq.rpc.invocation.api.Invocation;
 import com.pq.rpc.invocation.async.AsyncInvocation;
@@ -12,7 +11,7 @@ import com.pq.rpc.protocol.api.support.RPCInvokeParam;
 
 /**
  * 调用方式枚举类
- * 根据配置信息选择加载对应的调用方式
+ * 根据@RPCReference注解属性来选择枚举类
  *
  * @author pengqi
  * create at 2019/7/3
@@ -29,7 +28,7 @@ public enum InvocationType {
         this.invocation = invocation;
     }
 
-    public Invocation get(InvokeParam invokeParam) {
+    public static Invocation get(InvokeParam invokeParam) {
         ReferenceConfig referenceConfig = ((RPCInvokeParam)invokeParam).getReferenceConfig();
         if(referenceConfig.isAsync()){
             return ASYNC.invocation;

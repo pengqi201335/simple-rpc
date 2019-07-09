@@ -32,4 +32,9 @@ public class ProtocolConfig {
     private Protocol protocolInstance;
 
     private Executors executors;
+
+    public void close(){
+        protocolInstance.close();
+        executors.close();
+    }
 }

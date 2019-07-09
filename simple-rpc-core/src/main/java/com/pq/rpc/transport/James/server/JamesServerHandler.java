@@ -30,11 +30,13 @@ public class JamesServerHandler extends SimpleChannelInboundHandler<Message> {
     protected void channelRead0(ChannelHandlerContext ctx, Message message) {
         //收到消息,第一件事将计数器置0
         timeoutCount.set(0);
+        log.info("收到客户端消息,消息类型:{}",message.getType());
         byte type = message.getType();  //消息类型
         if(type==Message.PING){
             log.info("收到客户端PING心跳");
             ctx.writeAndFlush(Message.PONG_MSG);    //收到客户端的PING心跳后,回复一个PONG心跳
         }else if(type==Message.REQUEST){
+            log.info("收到rpc请求:{}",message.getRequest());
             jamesServer.handlerRPCRequest(message.getRequest(),ctx);
         }
     }

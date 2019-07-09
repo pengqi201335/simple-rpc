@@ -23,7 +23,7 @@ public class JamesClientHandler extends SimpleChannelInboundHandler<Message> {
 
     private Client client;  //客户端对象,因为要调用客户端的一些方法,所以要维护一个客户端实例
 
-    private AtomicInteger timeoutCount;     //空闲超时计数器,客户端超过给定时间未读取到数据,计数器加1,收到数据计数器就置0
+    private AtomicInteger timeoutCount = new AtomicInteger(0);     //空闲超时计数器,客户端超过给定时间未读取到数据,计数器加1,收到数据计数器就置0
 
     //这里不能将此handler设置为单例,因为每个clientHandler都维护了一个超时计数器,每个client都有自己独立的timeoutCount,所以不能共享Handler
     JamesClientHandler(Client client){

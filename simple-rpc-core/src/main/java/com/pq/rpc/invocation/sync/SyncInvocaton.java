@@ -22,7 +22,7 @@ public class SyncInvocaton extends AbstractInvocation {
     protected RPCResponse doInvoke(RPCRequest request, ReferenceConfig referenceConfig, Function<RPCRequest, Future<RPCResponse>> requestProcessor) throws Throwable {
         Future<RPCResponse> future = requestProcessor.apply(request);   //直接提交请求
         //get()方法使得线程阻塞在此
-        RPCResponse response = future.get(referenceConfig.getTimeout(), TimeUnit.MILLISECONDS);
+        RPCResponse response = future.get(referenceConfig.getTimeout(),TimeUnit.MILLISECONDS);
         log.info("收到RPC调用结果:"+response);
         return response;
     }

@@ -3,9 +3,10 @@ package com.pq.rpc.protocol.api.support;
 import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.common.enumeration.ExceptionEnum;
+import com.pq.rpc.common.enumeration.InvocationType;
 import com.pq.rpc.common.exception.RPCException;
 import com.pq.rpc.config.GlobalConfig;
-import com.pq.rpc.filter.Filter;
+import com.pq.rpc.client.filter.Filter;
 import com.pq.rpc.protocol.api.InvokeParam;
 import com.pq.rpc.protocol.api.Invoker;
 import com.pq.rpc.registry.api.ServiceURL;
@@ -80,8 +81,7 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
             throw new RPCException(ExceptionEnum.GET_PROCESSOR_METHOD_MUST_BE_OVERRIDE,"GET_PROCESSOR_METHOD_MUST_BE_OVERRIDE");
         }
         //根据用户的配置选择具体的调用方法并进行远程调用
-        //TODO choose invocation
-        return null;
+        return InvocationType.get(invokeParam).invoke(invokeParam,logic);
     }
 
     /**
@@ -156,6 +156,6 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
 
     @Override
     public boolean isAvailable() {
-        return false;
+        return true;
     }
 }

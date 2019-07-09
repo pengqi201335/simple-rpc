@@ -1,6 +1,7 @@
 package com.pq.rpc.transport.api.support.netty;
 
 import com.pq.rpc.common.context.RPCThreadSharedContext;
+import com.pq.rpc.common.domain.Message;
 import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.common.enumeration.ExceptionEnum;
@@ -69,7 +70,7 @@ public abstract class AbstractNettyClient extends AbstractClient {
         //配置服务启动类
         this.group = new NioEventLoopGroup();
         this.bootstrap = new Bootstrap();
-        bootstrap.group(group)
+        this.bootstrap.group(group)
                 .channel(NioSocketChannel.class)
                 .handler(initPipeline())
                 .option(ChannelOption.SO_KEEPALIVE,true)
@@ -77,6 +78,7 @@ public abstract class AbstractNettyClient extends AbstractClient {
         //连接远程节点
         try{
             doConnect();
+            log.info("netty客户端启动:{}",this.getClass().getSimpleName());
         }catch (Exception e){
             log.error("连接服务器失败...");
             e.printStackTrace();
@@ -191,7 +193,7 @@ public abstract class AbstractNettyClient extends AbstractClient {
         RPCThreadSharedContext.registryResponseFuture(request.getRequestID(),responseFuture);
 
         //将请求写入channel并出站
-        this.futureChannel.writeAndFlush(request);
+        this.futureChannel.writeAndFlush(Message.buildRequest(request));
 
         log.info("请求已发送至:{}",getServiceURL().getServiceAddress());
         return responseFuture;

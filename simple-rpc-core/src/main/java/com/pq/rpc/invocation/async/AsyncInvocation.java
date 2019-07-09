@@ -1,5 +1,6 @@
 package com.pq.rpc.invocation.async;
 
+import com.pq.rpc.common.context.RPCThreadLocalContext;
 import com.pq.rpc.common.domain.RPCRequest;
 import com.pq.rpc.common.domain.RPCResponse;
 import com.pq.rpc.config.ReferenceConfig;
@@ -57,6 +58,7 @@ public class AsyncInvocation extends AbstractInvocation {
             }
         };
         //将此resultFuture设置为ThreadLocal变量,这样的话,提交请求的线程(用户)可以直接使用future对象,而不需要根据请求ID去查表
+        RPCThreadLocalContext.getContext().setFuture(resultFuture);
         return null;
     }
 }

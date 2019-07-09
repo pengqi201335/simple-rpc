@@ -101,7 +101,7 @@ public class ExtensionLoader {
      */
     @SuppressWarnings("unchecked")
     public  <T> T load(Class<T> interfaceClass,Class enumType,String type){
-        ExtensionBaseType<T> extensionBaseType = ExtensionBaseType.valueOf(enumType,type);
+        ExtensionBaseType<T> extensionBaseType = ExtensionBaseType.valueOf(enumType,type.toUpperCase());
         //针对应用内的依赖
         if(extensionBaseType!=null){
             return extensionBaseType.getInstance();     //返回枚举单例中对应的实现类实例
